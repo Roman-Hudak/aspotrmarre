@@ -1,0 +1,49 @@
+name: Update Festool XML Feed
+
+on:
+  schedule:
+    # Kazdy den o polnoci (CET = 23:00 UTC)
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+    # Umozni manualne spustenie cez GitHub UI
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright openpyxl
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Run feed update script
+        env:
+          FESTOOL_USERNAME: ${{ secrets.FESTOOL_USERNAME }}
+          FESTOOL_PASSWORD: ${{ secrets.FESTOOL_PASSWORD }}
+        run: python update_feed.py
+
+      - name: Upload debug screenshot if exists
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshot
+          path: debug_screenshot.png
+          if-no-files-found: ignore
+
+      - name: Commit and push updated feed
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add feed.xml
+          git diff --staged --quiet || git commit -m "Automaticka aktualizacia feedu $(date +%Y-%m-%d)"
+          git push
