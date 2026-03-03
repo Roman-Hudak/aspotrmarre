@@ -5,7 +5,6 @@ on:
     # Kazdy den o polnoci (CET = 23:00 UTC)
     - cron: '0 23 * * *'
   workflow_dispatch:
-    # Umozni manualne spustenie cez GitHub UI
 
 jobs:
   update-feed:
@@ -32,12 +31,14 @@ jobs:
           FESTOOL_PASSWORD: ${{ secrets.FESTOOL_PASSWORD }}
         run: python update_feed.py
 
-      - name: Upload debug screenshot if exists
+      - name: Upload debug files if failed
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: debug-screenshot
-          path: debug_screenshot.png
+          name: debug-files
+          path: |
+            debug_*.png
+            debug_page.html
           if-no-files-found: ignore
 
       - name: Commit and push updated feed
