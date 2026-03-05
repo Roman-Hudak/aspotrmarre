@@ -1,5 +1,7 @@
 import asyncio
 import os
+import sys
+import glob as globmod
 from playwright.async_api import async_playwright
 import openpyxl
 import xml.etree.ElementTree as ET
@@ -7,10 +9,12 @@ from xml.dom import minidom
 from datetime import datetime, date
 
 # Config
-DOWNLOAD_URL = "https://predajca.festool.sk/b5152248-3b3d-426f-b973-89b78b2022ca"
+LOGIN_URL = "https://predajca.festool.sk"
+NETTO_CENNIK_URL = "https://predajca.festool.sk/objedn%C3%A1vky/netto-cenn%C3%ADk-pre-predajcov-"
 USERNAME = os.environ.get("FESTOOL_USERNAME", "")
 PASSWORD = os.environ.get("FESTOOL_PASSWORD", "")
 OUTPUT_FILE = "feed.xml"
+DEBUG_LOCAL = os.environ.get("DEBUG_LOCAL", "0") == "1"
 
 
 async def screenshot(page, name):
@@ -19,53 +23,51 @@ async def screenshot(page, name):
     print(f"   Screenshot: {path}")
 
 
+async def dismiss_cookies(page):
+    """Odklikne cookie consent banner ak sa zobrazi."""
+    try:
+        await page.wait_for_timeout(2000)
+        for txt in ["Prijať všetky", "Prijat všetky", "Accept All", "Accept all"]:
+            cookie_btn = await page.query_selector(f'button:has-text("{txt}")')
+            if cookie_btn and await cookie_btn.is_visible():
+                await cookie_btn.click()
+                print("   Cookie consent odkliknuty!")
+                await page.wait_for_timeout(1000)
+                return
+    except Exception as e:
+        print(f"   Cookie handling: {e}")
+
+
 async def download_excel():
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        browser = await p.chromium.launch(
+            headless=not DEBUG_LOCAL,
+            slow_mo=500 if DEBUG_LOCAL else 0
+        )
         context = await browser.new_context(
             accept_downloads=True,
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         )
         page = await context.new_page()
 
-        # KROK 1: Najprv ideme na dealer portal - ten nas presmeruje na login s OAuth parametrami
+        # KROK 1: Otvorime dealer portal - presmeruje na login
         print("1. Otvarame dealer portal (presmeruje na login)...")
-        await page.goto(DOWNLOAD_URL, wait_until="networkidle", timeout=60000)
+        await page.goto(LOGIN_URL, wait_until="networkidle", timeout=60000)
         await page.wait_for_timeout(3000)
         await screenshot(page, "01_redirected_login")
         print(f"   URL: {page.url}")
 
-        # COOKIE CONSENT - musime odkliknut pred loginom
-        print("   Kontrolujem cookie consent banner...")
-        try:
-            await page.wait_for_timeout(2000)
-            cookie_btn = await page.query_selector('button:has-text("Accept All")')
-            if not cookie_btn:
-                cookie_btn = await page.query_selector('button:has-text("Accept all")')
-            if not cookie_btn:
-                cookie_btn = await page.query_selector('button:has-text("Only accept necessary")')
-            if cookie_btn and await cookie_btn.is_visible():
-                await cookie_btn.click()
-                print("   Cookie consent odkliknuty!")
-                await page.wait_for_timeout(2000)
-            else:
-                print("   Cookie banner sa nezobrazil, pokracujeme...")
-        except Exception as e:
-            print(f"   Cookie handling: {e}")
-
+        await dismiss_cookies(page)
         await screenshot(page, "01b_after_cookies")
 
-        # Overime ze sme na login stranke
-        if "login.festool.com" not in page.url:
-            print("   Uz sme prihlaseni, pokracujeme...")
-        else:
-            # KROK 2: Vyplnime udaje na login stranke (uz s korektnym ReturnUrl)
+        # KROK 2: Login ak treba
+        if "login.festool.com" in page.url:
             print("2. Zadavame prihlasovacie udaje...")
             await page.wait_for_timeout(2000)
 
-            # Skusame rozne selektory pre email
+            # Email
             email_filled = False
-            for sel in ['input[name="Input.Email"]', 'input[name="Email"]', 'input[type="email"]', '#Email', '#Input_Email', 'input[id*="mail"]']:
+            for sel in ['input[name="Input.Email"]', 'input[name="Email"]', 'input[type="email"]', '#Email', '#Input_Email']:
                 try:
                     el = await page.query_selector(sel)
                     if el and await el.is_visible():
@@ -76,38 +78,9 @@ async def download_excel():
                 except:
                     continue
 
-            if not email_filled:
-                # Skusame vsetky textove inputy
-                inputs = await page.query_selector_all('input[type="text"], input[type="email"], input:not([type])')
-                for inp in inputs:
-                    try:
-                        if await inp.is_visible():
-                            placeholder = await inp.get_attribute("placeholder") or ""
-                            name_attr = await inp.get_attribute("name") or ""
-                            if any(w in (placeholder + name_attr).lower() for w in ['email', 'mail', 'user', 'login', 'meno']):
-                                await inp.fill(USERNAME)
-                                print(f"   Email vyplneny cez placeholder/name hladanie")
-                                email_filled = True
-                                break
-                    except:
-                        continue
-
-            if not email_filled:
-                # Posledna moznost - prvy viditelny textovy input
-                inputs = await page.query_selector_all('input[type="text"], input[type="email"], input:not([type="hidden"]):not([type="password"]):not([type="submit"]):not([type="checkbox"])')
-                for inp in inputs:
-                    try:
-                        if await inp.is_visible():
-                            await inp.fill(USERNAME)
-                            print(f"   Email vyplneny do prveho viditelneho inputu")
-                            email_filled = True
-                            break
-                    except:
-                        continue
-
             # Heslo
             password_filled = False
-            for sel in ['input[name="Input.Password"]', 'input[name="Password"]', 'input[type="password"]', '#Password', '#Input_Password']:
+            for sel in ['input[name="Input.Password"]', 'input[name="Password"]', 'input[type="password"]']:
                 try:
                     el = await page.query_selector(sel)
                     if el and await el.is_visible():
@@ -119,100 +92,55 @@ async def download_excel():
                     continue
 
             if not email_filled or not password_filled:
-                print(f"   VAROVANIE: email_filled={email_filled}, password_filled={password_filled}")
-                # Debug - vypiseme vsetky inputy na stranke
-                all_inputs = await page.query_selector_all('input')
-                for inp in all_inputs:
-                    try:
-                        inp_type = await inp.get_attribute("type") or "none"
-                        inp_name = await inp.get_attribute("name") or "none"
-                        inp_id = await inp.get_attribute("id") or "none"
-                        visible = await inp.is_visible()
-                        print(f"   INPUT: type={inp_type}, name={inp_name}, id={inp_id}, visible={visible}")
-                    except:
-                        pass
+                print(f"   CHYBA: email_filled={email_filled}, password_filled={password_filled}")
+                await screenshot(page, "02_error")
+                await browser.close()
+                return None
 
             await screenshot(page, "02_filled_form")
 
-            # KROK 3: Prihlasenie
+            # KROK 3: Kliknutie na prihlasenie
             print("3. Prihlasujeme sa...")
-            clicked = False
-            for sel in ['button[type="submit"]', 'input[type="submit"]', '.btn-primary', 'button.btn', '#login-button']:
+            for sel in ['button[type="submit"]', 'input[type="submit"]', '.btn-primary', 'button.btn']:
                 try:
                     el = await page.query_selector(sel)
                     if el and await el.is_visible():
                         await el.click()
                         print(f"   Kliknute na: {sel}")
-                        clicked = True
                         break
                 except:
                     continue
-
-            if not clicked:
-                # Skusame Enter
-                await page.keyboard.press("Enter")
-                print("   Odoslane cez Enter")
 
             await page.wait_for_timeout(5000)
             await page.wait_for_load_state("networkidle", timeout=60000)
             await screenshot(page, "03_after_login")
             print(f"   URL po prihlaseni: {page.url}")
 
-            # Ak sme stale na login, skusime este raz navigovat na DOWNLOAD_URL
             if "login.festool.com" in page.url:
-                print("   Stale na login stranke, skusame znova navigovat...")
-                await page.goto(DOWNLOAD_URL, wait_until="networkidle", timeout=60000)
-                await page.wait_for_timeout(5000)
-                await screenshot(page, "03b_retry_navigate")
-                print(f"   URL po retry: {page.url}")
+                print("   CHYBA: Prihlasenie zlyhalo!")
+                await browser.close()
+                return None
+        else:
+            print("   Uz sme prihlaseni, pokracujeme...")
 
-                if "login.festool.com" in page.url:
-                    print("   CHYBA: Prihlasenie zlyhalo!")
-                    # Vypiseme obsah stranky pre debug
-                    page_content = await page.content()
-                    with open("debug_page.html", "w", encoding="utf-8") as f:
-                        f.write(page_content)
-                    print("   HTML stranky ulozene do debug_page.html")
-                    await browser.close()
-                    return None
-
-        # KROK 4: Sme na dealer portali - hladame "Excel export všetko"
-        print("4. Sme na dealer portali, hladame export tlacidlo...")
+        # KROK 4: Navigacia na Netto cennik
+        print("4. Navigujeme na Netto cennik pre predajcov...")
+        await page.goto(NETTO_CENNIK_URL, wait_until="networkidle", timeout=60000)
         await page.wait_for_timeout(3000)
-
-        # Cookie consent aj na dealer portali
-        try:
-            cookie_btn = await page.query_selector('button:has-text("Accept All")')
-            if not cookie_btn:
-                cookie_btn = await page.query_selector('button:has-text("Accept all")')
-            if not cookie_btn:
-                cookie_btn = await page.query_selector('button:has-text("Only accept necessary")')
-            if cookie_btn and await cookie_btn.is_visible():
-                await cookie_btn.click()
-                print("   Cookie consent na portali odkliknuty!")
-                await page.wait_for_timeout(2000)
-        except:
-            pass
-
-        await screenshot(page, "04_dealer_portal")
+        await dismiss_cookies(page)
+        await screenshot(page, "04_netto_cennik")
         print(f"   URL: {page.url}")
 
-        # Najprv skusame presny text tlacidla z obrazovky
+        # KROK 5: Kliknutie na "Excel export všetko"
+        print("5. Hladame tlacidlo 'Excel export všetko'...")
         download_path = None
 
-        # Hladame tlacidlo "Excel export všetko"
-        export_selectors = [
+        for sel in [
             'button:has-text("Excel export všetko")',
             'a:has-text("Excel export všetko")',
             'button:has-text("Excel export v")',
             'a:has-text("Excel export v")',
-            'button:has-text("export všetko")',
-            'a:has-text("export všetko")',
-            'button:has-text("Excel export")',
-            'a:has-text("Excel export")',
-        ]
-
-        for sel in export_selectors:
+        ]:
             try:
                 el = await page.query_selector(sel)
                 if el and await el.is_visible():
@@ -229,58 +157,36 @@ async def download_excel():
                 print(f"   Selektor {sel} - chyba: {e}")
                 continue
 
-        # Ak to neslo cez text, skusame vsetky buttony a linky
+        # Fallback - hladame vsetky buttony/linky s textom "export"
         if not download_path:
-            print("   Prehladavame vsetky elementy...")
-            elements = await page.query_selector_all('button, a, [role="button"], input[type="button"], input[type="submit"]')
+            print("   Fallback: prehladavame vsetky elementy...")
+            elements = await page.query_selector_all('button, a, [role="button"]')
             for el in elements:
                 try:
                     text = (await el.inner_text()).strip().lower()
-                    if any(w in text for w in ['export všetko', 'export vsetko', 'excel export', 'export all']):
-                        print(f"   Nasiel som element s textom: {text}")
+                    if 'export' in text and 'všetko' in text:
+                        print(f"   Nasiel som element s textom: '{text}'")
                         async with page.expect_download(timeout=120000) as download_info:
                             await el.click()
                         download = await download_info.value
                         download_path = f"downloads/{download.suggested_filename}"
                         os.makedirs("downloads", exist_ok=True)
                         await download.save_as(download_path)
-                        print(f"   Subor stiahnuty cez text match: {download_path}")
+                        print(f"   Subor stiahnuty: {download_path}")
                         break
                 except:
-                    continue
-
-        # Link s .xlsx alebo download atributom
-        if not download_path:
-            links = await page.query_selector_all('a[href*=".xlsx"], a[href*="download"], a[href*="export"], a[download]')
-            for link in links:
-                try:
-                    async with page.expect_download(timeout=60000) as download_info:
-                        await link.click()
-                    download = await download_info.value
-                    download_path = f"downloads/{download.suggested_filename}"
-                    os.makedirs("downloads", exist_ok=True)
-                    await download.save_as(download_path)
-                    print(f"   Subor stiahnuty cez href: {download_path}")
-                    break
-                except Exception as e:
-                    print(f"   Link nefungoval: {e}")
                     continue
 
         if not download_path:
             await screenshot(page, "05_no_download")
             print("   CHYBA: Nepodarilo sa najst/stiahnut subor!")
-            page_content = await page.content()
-            with open("debug_page.html", "w", encoding="utf-8") as f:
-                f.write(page_content)
-            print("   HTML stranky ulozene do debug_page.html")
-            # Vypiseme vsetky viditelne buttony/linky
+            # Debug - vypiseme vsetky viditelne elementy
             elements = await page.query_selector_all('button, a')
             for el in elements:
                 try:
                     text = (await el.inner_text()).strip()
                     if text:
-                        href = await el.get_attribute("href") or ""
-                        print(f"   ELEMENT: '{text}' href='{href}'")
+                        print(f"   ELEMENT: '{text}'")
                 except:
                     pass
             await browser.close()
@@ -391,9 +297,23 @@ async def main():
 
     print("=" * 50)
     print("FESTOOL XML FEED GENERATOR")
+    if DEBUG_LOCAL:
+        print(">>> LOKALNY DEBUG MOD <<<")
     print("=" * 50)
 
-    excel_path = await download_excel()
+    # Ak je zadany argument s cestou k excelu, pouzijeme ho priamo
+    if len(sys.argv) > 1:
+        excel_path = sys.argv[1]
+        print(f"Pouzivam zadany Excel: {excel_path}")
+    else:
+        excel_path = await download_excel()
+
+        # Ak download zlyhal a sme v debug mode, skusime najst lokalny xlsx
+        if not excel_path and DEBUG_LOCAL:
+            local_files = globmod.glob("*.xlsx") + globmod.glob("downloads/*.xlsx")
+            if local_files:
+                excel_path = local_files[0]
+                print(f"Download zlyhal, pouzivam lokalny subor: {excel_path}")
 
     if excel_path:
         count = generate_feed(excel_path)
