@@ -55211,13 +55211,13 @@
       <VALUE>11 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CZ</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
+    <DELIVERY_DATE>2026-09-03</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>228540</ITEM_ID>
@@ -70872,13 +70872,13 @@
       <VALUE>7 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>ID</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
+    <DELIVERY_DATE>2026-09-01</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>401523</ITEM_ID>
@@ -89441,13 +89441,12 @@
       <VALUE>22 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>445210</ITEM_ID>
@@ -139469,12 +139468,13 @@
       <n>Hmotnosť</n>
       <VALUE>1 g</VALUE>
     </PARAM>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>473045</ITEM_ID>
@@ -157126,13 +157126,12 @@
       <VALUE>192,5 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CZ</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>484176</ITEM_ID>
@@ -163404,12 +163403,13 @@
       <VALUE>30 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>488139</ITEM_ID>
@@ -167006,6 +167006,7 @@
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-09-01</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>488717</ITEM_ID>
@@ -168928,6 +168929,7 @@
       <n>Hmotnosť</n>
       <VALUE>35 g</VALUE>
     </PARAM>
+    <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
     <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
@@ -180358,12 +180360,13 @@
       <VALUE>702 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>491440</ITEM_ID>
@@ -183485,13 +183488,12 @@
       <VALUE>197 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>491742</ITEM_ID>
@@ -186340,12 +186342,13 @@
       <VALUE>110 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CZ</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>492126</ITEM_ID>
@@ -194344,12 +194347,13 @@
       <VALUE>3 227 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>493297</ITEM_ID>
@@ -194411,12 +194415,13 @@
       <VALUE>3 433 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>493299</ITEM_ID>
@@ -201949,13 +201954,13 @@
       <VALUE>671 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-31</DELIVERY_DATE>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>494875</ITEM_ID>
@@ -202322,12 +202327,13 @@
       <VALUE>642 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>494941</ITEM_ID>
@@ -205142,12 +205148,13 @@
       <VALUE>304 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>495370</ITEM_ID>
@@ -206539,7 +206546,6 @@
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-09-01</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>495626</ITEM_ID>
@@ -221544,12 +221550,13 @@
       <VALUE>1 716 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>498213</ITEM_ID>
@@ -221719,6 +221726,7 @@
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-09-01</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>498218</ITEM_ID>
@@ -248374,6 +248382,7 @@
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-09-16</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>576864</ITEM_ID>
@@ -256511,8 +256520,20 @@
     <CATEGORY>Príslušenstvo</CATEGORY>
     <CATEGORYTEXT>397003001</CATEGORYTEXT>
     <PARAM>
+      <n>Výška</n>
+      <VALUE>60 mm</VALUE>
+    </PARAM>
+    <PARAM>
+      <n>Šírka</n>
+      <VALUE>370 mm</VALUE>
+    </PARAM>
+    <PARAM>
+      <n>Dĺžka</n>
+      <VALUE>530 mm</VALUE>
+    </PARAM>
+    <PARAM>
       <n>Hmotnosť</n>
-      <VALUE>0,672 kg</VALUE>
+      <VALUE>772 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
     <AVAILABILITY>in stock</AVAILABILITY>
@@ -260144,12 +260165,13 @@
       <VALUE>6 538 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
     <PARAM>
       <n>Toolpoints</n>
       <VALUE>41</VALUE>
@@ -262240,12 +262262,13 @@
       <VALUE>4 065 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CN</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
     <PARAM>
       <n>Toolpoints</n>
       <VALUE>21</VALUE>
@@ -262404,12 +262427,13 @@
       <VALUE>6 499 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
     <PARAM>
       <n>Toolpoints</n>
       <VALUE>60</VALUE>
@@ -267513,8 +267537,20 @@
     <CATEGORY>Príslušenstvo</CATEGORY>
     <CATEGORYTEXT>397003001</CATEGORYTEXT>
     <PARAM>
+      <n>Výška</n>
+      <VALUE>30 mm</VALUE>
+    </PARAM>
+    <PARAM>
+      <n>Šírka</n>
+      <VALUE>270 mm</VALUE>
+    </PARAM>
+    <PARAM>
+      <n>Dĺžka</n>
+      <VALUE>290 mm</VALUE>
+    </PARAM>
+    <PARAM>
       <n>Hmotnosť</n>
-      <VALUE>0,203 kg</VALUE>
+      <VALUE>197 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
     <AVAILABILITY>out of stock</AVAILABILITY>
@@ -267534,8 +267570,20 @@
     <CATEGORY>Príslušenstvo</CATEGORY>
     <CATEGORYTEXT>397003001</CATEGORYTEXT>
     <PARAM>
+      <n>Výška</n>
+      <VALUE>50 mm</VALUE>
+    </PARAM>
+    <PARAM>
+      <n>Šírka</n>
+      <VALUE>410 mm</VALUE>
+    </PARAM>
+    <PARAM>
+      <n>Dĺžka</n>
+      <VALUE>470 mm</VALUE>
+    </PARAM>
+    <PARAM>
       <n>Hmotnosť</n>
-      <VALUE>0,674 kg</VALUE>
+      <VALUE>718 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
     <AVAILABILITY>out of stock</AVAILABILITY>
@@ -287633,12 +287681,13 @@
       <VALUE>566 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CZ</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>618978</ITEM_ID>
@@ -334734,13 +334783,12 @@
       <VALUE>560 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>718085</ITEM_ID>
@@ -360448,12 +360496,13 @@
       <VALUE>56 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CZ</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>768900</ITEM_ID>
@@ -361024,13 +361073,12 @@
       <VALUE>178 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CZ</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>769066</ITEM_ID>
@@ -377635,12 +377683,13 @@
       <VALUE>1 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>10005574</ITEM_ID>
@@ -405273,7 +405322,7 @@
     </PARAM>
     <PARAM>
       <n>Hmotnosť</n>
-      <VALUE>4,39 g</VALUE>
+      <VALUE>4,38 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
     <AVAILABILITY>in stock</AVAILABILITY>
@@ -418893,12 +418942,13 @@
       <VALUE>340 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>DE</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>out of stock</AVAILABILITY>
+    <AVAILABILITY>in stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
+    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>10576948</ITEM_ID>
@@ -422958,13 +423008,12 @@
       <VALUE>460 g</VALUE>
     </PARAM>
     <COUNTRY_OF_ORIGIN>CZ</COUNTRY_OF_ORIGIN>
-    <AVAILABILITY>in stock</AVAILABILITY>
+    <AVAILABILITY>out of stock</AVAILABILITY>
     <CONDITION>new</CONDITION>
     <PARAM>
       <n>Partnerská zľava</n>
       <VALUE>0</VALUE>
     </PARAM>
-    <DELIVERY_DATE>2026-08-28</DELIVERY_DATE>
   </ITEM>
   <ITEM>
     <ITEM_ID>10693763</ITEM_ID>
